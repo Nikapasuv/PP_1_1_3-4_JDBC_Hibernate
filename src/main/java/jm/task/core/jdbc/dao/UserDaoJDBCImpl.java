@@ -19,25 +19,14 @@ public class UserDaoJDBCImpl implements UserDao {
         Statement stmt = null;
         try {
             stmt = connection.createStatement();
+            stmt.getConnection();
+            stmt.executeUpdate(qwery);
+            connection.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
 
         }
-        try {
-            stmt.getConnection();
-        } catch (SQLException | NullPointerException e) {
-            System.out.println(e.getMessage());
-        }
-        try {
-            stmt.executeUpdate(qwery);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+
     }
 
     public void dropUsersTable() {
